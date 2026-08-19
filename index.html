@@ -11,7 +11,7 @@
     box-sizing: border-box;
   }
   html, body {
-    height: 100%;
+    min-height: 100%;
   }
   body {
     background-color: #ffffff;
@@ -22,21 +22,136 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 24px;
+    padding: 24px 24px 60px;
+  }
+  .wrap {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .message {
     font-size: clamp(20px, 6vw, 32px);
     font-weight: 700;
     line-height: 1.5;
-    max-width: 480px;
     letter-spacing: -0.5px;
+  }
+  .more-btn {
+    margin-top: 28px;
+    background-color: #111111;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.15s ease;
+  }
+  .more-btn:active {
+    opacity: 0.75;
+  }
+  .details {
+    display: none;
+    margin-top: 32px;
+    text-align: left;
+    width: 100%;
+    animation: fadeIn 0.25s ease;
+  }
+  .details.show {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .stat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  .stat-table td {
+    padding: 8px 4px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .stat-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+  }
+  .rules-list {
+    list-style: none;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .rules-list li {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .rules-list .num {
+    flex: none;
+    width: 22px;
+    font-weight: 700;
+  }
+  .closing {
+    margin-top: 32px;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
   }
 </style>
 </head>
 <body>
-  <div class="message">
-    당신의 개인 정보는 유출되었습니다.<br>
-    누르기 전에 생각하셨나요?
+  <div class="wrap">
+    <div class="message">
+      당신의 개인 정보는 털렸습니다.<br>
+      포스터의 내용을 다시 확인해 주세요.
+    </div>
+
+    <button class="more-btn" id="moreBtn" onclick="toggleDetails()">더 알아보기</button>
+
+    <div class="details" id="details">
+      <div class="section-title">개인정보 유출 건수</div>
+      <table class="stat-table">
+        <tr><td>2023년</td><td>318건</td></tr>
+        <tr><td>2024년</td><td>307건</td></tr>
+        <tr><td>2025년</td><td>447건</td></tr>
+        <tr><td>2026년 상반기</td><td>432건</td></tr>
+      </table>
+
+      <div class="section-title">개인정보보호위원회가 말하는<br>개인정보보호 생활 8대 실천수칙</div>
+      <ul class="rules-list">
+        <li><span class="num">1.</span><span>SNS에 업로드할 사진, 동영상에 개인정보가 있는지 확인하기</span></li>
+        <li><span class="num">2.</span><span>출처를 알 수 없는 문자, 이메일, SNS에 포함된 링크는 열지 않기</span></li>
+        <li><span class="num">3.</span><span>PC방 등 공용PC 사용시 금융서비스 등을 이용하지 않기</span></li>
+        <li><span class="num">4.</span><span>비밀번호는 주기적으로 변경하기</span></li>
+        <li><span class="num">5.</span><span>스마트폰 앱 설치 시 개인정보 접근 권한 살펴보고 동의하기</span></li>
+        <li><span class="num">6.</span><span>최신 보안 프로그램 설치하고 실시간 감시기능을 실행하기</span></li>
+        <li><span class="num">7.</span><span>의심스러운 이메일 내 첨부파일은 함부로 열지 않기</span></li>
+        <li><span class="num">8.</span><span>회사 내 개인정보를 다루는 직원은 최소화하고, 개인정보보호 교육 이수하기</span></li>
+      </ul>
+
+      <div class="closing">당신의 정보는 안전한가요?</div>
+    </div>
   </div>
+
+  <script>
+    function toggleDetails() {
+      var details = document.getElementById('details');
+      var btn = document.getElementById('moreBtn');
+      var isShown = details.classList.toggle('show');
+      btn.textContent = isShown ? '접기' : '더 알아보기';
+      if (isShown) {
+        details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  </script>
 </body>
 </html>
