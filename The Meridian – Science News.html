@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Meridian Science Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f6f8; --surface:#ffffff; --ink:#14212b; --muted:#5b6b78; --line:#d5dee5;
+  --brand:#0b3a53; --accent:#d6336c; --accent-ink:#ffffff;
+  --sans:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","Batang",Georgia,serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e161c; --surface:#16212a; --ink:#e8eef2; --muted:#93a4b1; --line:#2a3a46;
+    --brand:#7cc4e6; --accent:#ff6b9a; --accent-ink:#1a0710; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e161c; --surface:#16212a; --ink:#e8eef2; --muted:#93a4b1; --line:#2a3a46;
+  --brand:#7cc4e6; --accent:#ff6b9a; --accent-ink:#1a0710; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* masthead */
+.top{background:var(--brand);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .top{color:#0e161c}}
+.top .wrap{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding-top:8px;padding-bottom:8px}
+.mast{background:var(--surface);border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;gap:16px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:30px;letter-spacing:-.02em;color:var(--brand)}
+.logo span{color:var(--accent)}
+.search{display:flex;gap:0}
+.search input{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-right:0;background:var(--bg);color:var(--ink);border-radius:6px 0 0 6px;min-width:0;width:200px}
+.search button{font:inherit;font-size:14px;padding:8px 14px;border:0;background:var(--brand);color:#fff;border-radius:0 6px 6px 0;cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .search button{color:#0e161c}}
+nav.sections{background:var(--surface);border-bottom:2px solid var(--brand);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav.sections .wrap{display:flex;gap:4px;overflow-x:auto}
+nav.sections a{padding:12px 14px;font-weight:700;font-size:15px;white-space:nowrap}
+nav.sections a.on{color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--brand);z-index:10}
+
+/* layout */
+main.wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:36px;padding-top:28px;padding-bottom:56px}
+@media (max-width:900px){main.wrap{grid-template-columns:1fr}}
+
+/* article */
+.kicker{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:13px;padding:3px 10px;border-radius:3px}
+h1{font-size:clamp(28px,4.6vw,44px);line-height:1.2;letter-spacing:-.02em;margin:14px 0 10px;font-weight:900}
+.dek{font-family:var(--serif);font-size:19px;color:var(--muted);margin:0 0 16px;max-width:62ch}
+.byline{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted);padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .avatar{color:#0e161c}}
+.byline b{color:var(--ink)}
+figure{margin:0}
+figure svg,.thumb svg{display:block;width:100%;height:auto}
+.hero{margin:22px 0 0;border-radius:8px;overflow:hidden}
+figcaption{font-size:13px;color:var(--muted);padding:8px 2px 0}
+.body{font-family:var(--serif);font-size:18px;line-height:1.95;max-width:68ch;margin-top:26px}
+.body p{margin:0 0 1.4em}
+.body figure{margin:30px 0;border-radius:8px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.body figcaption{font-family:var(--sans);padding:10px 14px 12px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.tags a{font-size:13px;border:1px solid var(--line);background:var(--surface);padding:4px 12px;border-radius:99px}
+.share{display:flex;gap:8px;margin-top:20px}
+.share button{font:inherit;font-size:13px;padding:6px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer}
+
+/* sidebar */
+aside h2{font-size:17px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--brand)}
+aside section{margin-bottom:32px}
+.item{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.thumb{border-radius:6px;overflow:hidden;align-self:start}
+.item h3{font-size:15px;line-height:1.4;margin:0 0 4px}
+.item small{color:var(--muted);font-size:12px}
+.rank{list-style:none;padding:0;margin:0;counter-reset:r}
+.rank li{counter-increment:r;display:grid;grid-template-columns:28px 1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.rank li::before{content:counter(r);font-weight:900;color:var(--accent);font-size:18px}
+.sub{background:var(--brand);color:#fff;padding:18px;border-radius:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sub{color:#0e161c}}
+.sub p{margin:0 0 12px;font-size:14px}
+.sub input{width:100%;font:inherit;padding:9px 10px;border:0;border-radius:6px;margin-bottom:8px;background:#fff;color:#14212b}
+.sub button{width:100%;font:inherit;font-weight:700;padding:9px;border:0;border-radius:6px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+footer{background:var(--surface);border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:22px 0}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap"><span>Monday, November 23, 2026</span><span>Seoul 8°C</span></div></div>
+
+<header class="mast"><div class="wrap">
+  <a class="logo" href="#top">The Meridian<span>.</span></a>
+  <div class="search"><input type="search" placeholder="Search news" aria-label="Search news"><button type="button">Search</button></div>
+</div></header>
+
+<nav class="sections" aria-label="Sections"><div class="wrap">
+  <a href="#top">Home</a><a href="#top" class="on">Science</a><a href="#top">Health</a><a href="#top">Technology</a><a href="#top">World</a><a href="#top">Opinion</a><a href="#top">Culture</a>
+</div></nav>
+
+<main class="wrap" id="top">
+<article>
+  <span class="kicker">Science · Neuroscience</span>
+  <h1>Cross-species brain grafts: not conclusions, but a navigator for what comes next</h1>
+  <p class="dek">Experiments that transplant human brain cells into other species raise ethical questions, yet researchers say the insights are hard to obtain any other way.</p>
+
+  <div class="byline">
+    <div class="avatar">M</div>
+    <div><b>Meridian Science Desk</b><br>Updated Nov 23, 2026, 9:00 AM</div>
+  </div>
+
+  <figure class="hero">
+    <svg viewBox="0 0 960 440" role="img" aria-label="Illustration of a network of glowing neurons">
+      <defs>
+        <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b3a53"/><stop offset="1" stop-color="#2a1b5e"/></linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ff8fb5"/><stop offset="1" stop-color="#d6336c" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="960" height="440" fill="url(#hg)"/>
+      <g stroke="#7cc4e6" stroke-width="2" opacity=".55" fill="none">
+        <path d="M120 300 C220 220 260 180 360 170 S520 120 600 160 S760 240 850 150"/>
+        <path d="M200 120 C260 190 300 250 420 270 S600 330 700 280 S820 220 880 300"/>
+        <path d="M80 190 C170 230 250 330 380 360 S560 380 640 330"/>
+        <path d="M360 170 L420 270 M600 160 L700 280 M420 270 L600 160"/>
+      </g>
+      <g>
+        <circle cx="360" cy="170" r="46" fill="url(#glow)"/><circle cx="360" cy="170" r="12" fill="#ffd1e0"/>
+        <circle cx="600" cy="160" r="52" fill="url(#glow)"/><circle cx="600" cy="160" r="14" fill="#ffd1e0"/>
+        <circle cx="420" cy="270" r="40" fill="url(#glow)"/><circle cx="420" cy="270" r="10" fill="#ffd1e0"/>
+        <circle cx="700" cy="280" r="44" fill="url(#glow)"/><circle cx="700" cy="280" r="11" fill="#ffd1e0"/>
+        <circle cx="120" cy="300" r="8" fill="#9fdcf5"/><circle cx="200" cy="120" r="8" fill="#9fdcf5"/>
+        <circle cx="850" cy="150" r="9" fill="#9fdcf5"/><circle cx="880" cy="300" r="8" fill="#9fdcf5"/>
+        <circle cx="80" cy="190" r="7" fill="#9fdcf5"/><circle cx="640" cy="330" r="8" fill="#9fdcf5"/>
+      </g>
+    </svg>
+    <figcaption>Neurons connecting across a network. Illustration.</figcaption>
+  </figure>
+
+  <div class="body">
+    <p>While this research primarily draws implications without clear conclusions, this does not mean that this experiment was pointless. Through the grafts, diseases especially related to human brain cells, such as certain types of dementia, Autism, and Schizophrenia, could be examined in other species. Some may oppose this idea, considering that ethical issues remain and suggest computer simulation as an alternative. But conducting such experiments still requires a massive amount of data, meaning these kinds of experiments are indispensable. It is true for now that the grafts remain immature and have clear restraints, as they have not grown and formed connections within their original host, humans. But valuable insights—and even some information that can only be obtained from a non-human context by inter-species comparison—still exist. Thus, we can't say that it is useless; rather, it is a navigator to significant breakthroughs.</p>
+
+    <figure>
+      <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of cells moving from a human brain to another species">
+        <rect width="760" height="300" fill="#e7f1f6"/>
+        <g fill="none" stroke="#0b3a53" stroke-width="4">
+          <path d="M120 210 C70 210 60 150 100 120 C110 70 190 60 220 100 C270 90 300 150 270 190 C260 230 170 240 120 210Z" fill="#f7c3d5"/>
+          <path d="M520 220 C480 220 470 170 500 145 C510 100 580 95 610 130 C650 125 670 175 645 205 C630 240 560 245 520 220Z" fill="#bfe3f2"/>
+          <path d="M300 150 L460 150" stroke="#d6336c" stroke-width="5" stroke-dasharray="10 8"/>
+          <path d="M445 135 L465 150 L445 165" stroke="#d6336c" stroke-width="5"/>
+        </g>
+        <g fill="#0b3a53" font-family="Noto Sans KR, sans-serif" font-size="16" font-weight="700" text-anchor="middle">
+          <text x="170" y="270">Human brain cells</text>
+          <text x="570" y="275">Host species</text>
+          <text x="380" y="130" fill="#d6336c">Graft</text>
+        </g>
+      </svg>
+      <figcaption>A simplified diagram of an inter-species graft. Illustration.</figcaption>
+    </figure>
+  </div>
+
+  <div class="tags"><a href="#top">Neuroscience</a><a href="#top">Dementia</a><a href="#top">Autism</a><a href="#top">Schizophrenia</a><a href="#top">Bioethics</a></div>
+  <div class="share"><button type="button">Share</button><button type="button">Save</button><button type="button">Print</button></div>
+</article>
+
+<aside>
+  <section>
+    <h2>Related stories</h2>
+    <a class="item" href="#top">
+      <div class="thumb"><svg viewBox="0 0 96 72" aria-hidden="true"><rect width="96" height="72" fill="#0b3a53"/><circle cx="30" cy="36" r="14" fill="#ff8fb5"/><circle cx="66" cy="28" r="8" fill="#9fdcf5"/><path d="M30 36 L66 28" stroke="#9fdcf5" stroke-width="2"/></svg></div>
+      <div><h3>How lab-grown brain organoids are changing disease research</h3><small>Health · 3 hours ago</small></div>
+    </a>
+    <a class="item" href="#top">
+      <div class="thumb"><svg viewBox="0 0 96 72" aria-hidden="true"><rect width="96" height="72" fill="#d6336c"/><path d="M10 52 L30 30 L50 44 L70 16 L88 26" fill="none" stroke="#fff" stroke-width="4"/></svg></div>
+      <div><h3>Computer simulations of the brain: what they can and cannot show</h3><small>Technology · 5 hours ago</small></div>
+    </a>
+    <a class="item" href="#top">
+      <div class="thumb"><svg viewBox="0 0 96 72" aria-hidden="true"><rect width="96" height="72" fill="#2a1b5e"/><circle cx="48" cy="36" r="22" fill="none" stroke="#7cc4e6" stroke-width="4"/><circle cx="48" cy="36" r="8" fill="#ffd1e0"/></svg></div>
+      <div><h3>Ethics panel debates limits on human–animal chimera studies</h3><small>World · Yesterday</small></div>
+    </a>
+  </section>
+
+  <section>
+    <h2>Most read</h2>
+    <ol class="rank">
+      <li><a href="#top">New clues on the early signs of dementia</a></li>
+      <li><a href="#top">Why autism research is shifting toward large shared datasets</a></li>
+      <li><a href="#top">What inter-species comparison can teach us about the human brain</a></li>
+      <li><a href="#top">Schizophrenia studies look to cell-level models</a></li>
+    </ol>
+  </section>
+
+  <section class="sub">
+    <p><b>Get the morning science briefing</b><br>The day’s top stories in your inbox.</p>
+    <input type="email" placeholder="Email address" aria-label="Email address">
+    <button type="button">Subscribe</button>
+  </section>
+</aside>
+</main>
+
+<footer><div class="wrap">© 2026 The Meridian. This is a design mockup; links and buttons are not functional.</div></footer>
+</body>
+</html>
